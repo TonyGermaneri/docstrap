@@ -76,7 +76,11 @@ var navigationMaster = {
     link: helper.getUniqueFilename('classes.list'),
     members: []
   },
-
+  methods: {
+    title: "Methods",
+    link: helper.getUniqueFilename("methods.list"),
+    members: []
+  },
   mixin: {
     title: "Mixins",
     link: helper.getUniqueFilename("mixins.list"),
@@ -396,6 +400,19 @@ function buildNav(members) {
 
   }
 
+  if (members.methods.length) {
+
+    members.methods.forEach(function(e) {
+      if (!hasOwnProp.call(seen, e.longname)) {
+
+        nav.method.members.push(linkto(e.longname, e.longname.replace("module:", "")));
+      }
+      seen[e.longname] = true;
+    });
+
+  }
+
+
   if (members.events.length) {
 
     members.events.forEach(function(e) {
@@ -444,14 +461,6 @@ function buildNav(members) {
 
   }
 
-  if (members.tutorials.length) {
-
-    members.tutorials.forEach(function(t) {
-
-      nav.tutorial.members.push(tutoriallink(t.name));
-    });
-
-  }
 
   if (members.globals.length) {
     members.globals.forEach(function(g) {
