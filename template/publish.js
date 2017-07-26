@@ -400,7 +400,7 @@ function buildNav(members) {
 
   }
 
-  if (members.methods.length) {
+  if (members.methods && members.methods.length) {
 
     members.methods.forEach(function(e) {
       if (!hasOwnProp.call(seen, e.longname)) {
